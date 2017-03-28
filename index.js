@@ -95,7 +95,7 @@ function sendGenericMessage(sender) {
 				"elements": [{
 					"title": "First card",
 					"subtitle": "Element #1 of an hscroll",
-					"image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+					"image_url": "https://www.google.co.in/search?q=Sunny+amar+nath&espv=2&site=webhp&tbm=isch&imgil=o95kI_2UlUSuLM%253A%253BA-zhmzrfYbe4HM%253Bhttp%25253A%25252F%25252Fwww.qspiders.com%25252Fsunny-amar-nath&source=iu&pf=m&fir=o95kI_2UlUSuLM%253A%252CA-zhmzrfYbe4HM%252C_&usg=__Qg1deTtq1Mskthd84QyxjFyFHMs%3D&biw=1422&bih=754&ved=0ahUKEwjk89SK0vnSAhUIS7wKHTEUBywQyjcIOQ&ei=M5LaWKSOCoiW8QWxqJzgAg#imgrc=o95kI_2UlUSuLM:",
 					"buttons": [{
 						"type": "web_url",
 						"url": "https://www.messenger.com",
