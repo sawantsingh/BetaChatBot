@@ -50,7 +50,7 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			}
-			if (text === ‘Weather’){ 
+			if (text === 'Weather'){ 
 				sendWeatherReport(sender)
 				continue
 			}
