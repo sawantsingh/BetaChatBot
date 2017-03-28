@@ -1,26 +1,16 @@
 {
-  "name": "betachatbot",
+  "name": "secretbots",
   "version": "1.0.0",
-  "description": "Practice chat bot",
+  "description": "",
   "main": "index.js",
-  "dependencies": {
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "request": "^2.81.0"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "git init"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git add ."
-  },
-  "keywords": [
-    "demo",
-    "chat",
-    "bot"
-  ],
-  "author": "sawant",
-  "license": "ISC"
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "request": "^2.71.0"
+  }
 }
