@@ -50,6 +50,10 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			}
+			if (text === ‘Weather’){ 
+				sendWeatherReport(sender)
+				continue
+			}
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
@@ -65,6 +69,26 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.FB_PAGE_ACCESS_TOKEN
 const token = "EAAJbdXC4E9kBADgY9iNK3f8IRusZBNw1TfzvWJKAgbEtEBQBIyWnfa88agtHvFiCAL82airqv3o2YAC1ZC8p9woAxd2bv3awR5e5lcyRd7J4al3qCHPzAqDfYSvJXmDeCn1NN3ZAZAjwZBqg5uMq3K5AoVcGmognHKbWgFxWiSZBRHwKI5njXF"
+
+
+function sendWeatherReport(sender, text){
+	let messageData = { text:text }
+	
+
+	request({
+		url: 'https://api.darksky.net/forecast/5fa39d2d3870ab45753d970a62fb4777/37.8267,-122.4233',
+		method: ‘GET’
+	}, function(error, response) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		} else {
+		 
+		sendTextMessage(sender, response)
+	})
+
+}
 
 function sendTextMessage(sender, text) {
 	let messageData = { text:text }
