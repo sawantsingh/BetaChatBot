@@ -90,6 +90,7 @@ app.post('/webhook/', function (req, res) {
 					}
 					sendResponseData(sender,response)
 				})
+				continue
 			}
 //
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
