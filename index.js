@@ -5,8 +5,6 @@ Please report any bugs to nicomwaks@gmail.com
 i have added console.log on line 48 
 
 
-
-
  */
 'use strict'
 
@@ -36,13 +34,46 @@ app.get('/webhook/', function (req, res) {
 		res.send('Error, wrong token')
 	}
 })
-
 // to post data
+
+app.post('/tryone/', function (req, res) {
+	
+	console.log(req)
+
+
+	let urlString = 'https://api.darksky.net/forecast/5fa39d2d3870ab45753d970a62fb4777/' + req.body.coordinate
+
+	console.log(urlString)
+
+	request({
+		url: urlString,
+		method: 'GET'
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+		res.send(response.body)
+
+	})
+
+})
+
+
+function localServerTest () {
+
+}
+
+
 app.post('/webhook/', function (req, res) {
+	
+	console.log(req);
+
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
-		let sender = event.sender.id
+		//let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text
 			if (text === 'Generic'){ 
@@ -50,7 +81,9 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			}
-			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			console.log("Test message substring" + text.substring(0,200));
+
+			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
