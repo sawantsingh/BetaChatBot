@@ -76,11 +76,9 @@ app.post('/webhook/', function (req, res) {
 				sendGenericMessage(sender)
 				continue
 			}
-			else if (text == 'weather'){
+			if (text === 'weather'){
 				let urlString = 'https://api.darksky.net/forecast/5fa39d2d3870ab45753d970a62fb4777/37.8267,-122.4233' //req.body.coordinate
-
-				console.log('Print url string' , urlString)
-
+				//
 				request({
 					url: urlString,
 					method: 'GET'
@@ -90,12 +88,10 @@ app.post('/webhook/', function (req, res) {
 					} else if (response.body.error) {
 						console.log('Error: ', response.body.error)
 					}
-					res.sendResponseData(sender,response)
-					continue
+					sendResponseData(sender,response)
 				})
 			}
-			console.log("Test message substring" + text.substring(0,200));
-
+//
 			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
