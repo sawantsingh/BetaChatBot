@@ -1,9 +1,5 @@
 //This is still work in progress
 /*
-Please report any bugs to nicomwaks@gmail.com
-
-i have added console.log on line 48 
-
 
  */
 'use strict'
@@ -40,7 +36,6 @@ app.post('/tryone/', function (req, res) {
 	
 	console.log(req)
 
-
 	let urlString = 'https://api.darksky.net/forecast/5fa39d2d3870ab45753d970a62fb4777/' + req.body.coordinate
 
 	console.log(urlString)
@@ -73,13 +68,31 @@ app.post('/webhook/', function (req, res) {
 	let messaging_events = req.body.entry[0].messaging
 	for (let i = 0; i < messaging_events.length; i++) {
 		let event = req.body.entry[0].messaging[i]
-		//let sender = event.sender.id
+		let sender = event.sender.id
 		if (event.message && event.message.text) {
 			let text = event.message.text
 			if (text === 'Generic'){ 
-				//console.log("welcome to chatbot")
+				console.log("welcome to chatbot")
 				sendGenericMessage(sender)
 				continue
+			}
+			else if (text == 'weather'){
+				let urlString = 'https://api.darksky.net/forecast/5fa39d2d3870ab45753d970a62fb4777/37.8267,-122.4233' //req.body.coordinate
+
+				console.log('Print url string' , urlString)
+
+				request({
+					url: urlString,
+					method: 'GET'
+				}, function(error, response, body) {
+					if (error) {
+						console.log('Error sending messages: ', error)
+					} else if (response.body.error) {
+						console.log('Error: ', response.body.error)
+					}
+					res.send(response.body)
+
+				})
 			}
 			console.log("Test message substring" + text.substring(0,200));
 
