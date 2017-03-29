@@ -90,13 +90,13 @@ app.post('/webhook/', function (req, res) {
 					} else if (response.body.error) {
 						console.log('Error: ', response.body.error)
 					}
-					res.send(response.body)
-
+					res.sendResponseData(sender,response)
+					continue
 				})
 			}
 			console.log("Test message substring" + text.substring(0,200));
 
-			//sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+			sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 		}
 		if (event.postback) {
 			let text = JSON.stringify(event.postback)
@@ -111,6 +111,26 @@ app.post('/webhook/', function (req, res) {
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.FB_PAGE_ACCESS_TOKEN
 const token = "EAAJbdXC4E9kBADgY9iNK3f8IRusZBNw1TfzvWJKAgbEtEBQBIyWnfa88agtHvFiCAL82airqv3o2YAC1ZC8p9woAxd2bv3awR5e5lcyRd7J4al3qCHPzAqDfYSvJXmDeCn1NN3ZAZAjwZBqg5uMq3K5AoVcGmognHKbWgFxWiSZBRHwKI5njXF"
+
+function sendResponseData(sender,response) {
+	
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: response,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
 
 function sendTextMessage(sender, text) {
 	let messageData = { text:text }
