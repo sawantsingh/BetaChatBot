@@ -79,16 +79,17 @@ app.post('/webhook/', function (req, res) {
 			if (text === 'weather'){
 				let urlString = 'https://api.darksky.net/forecast/5fa39d2d3870ab45753d970a62fb4777/37.8267,-122.4233' //req.body.coordinate
 				
-				sendTextMessage(sender, "Weather, echo: " + text.substring(0, 200))
-
 				request({
 					url: urlString,
 					method: 'GET'
 				}, function(error, response, body) {
 					if (error) {
 						console.log('Error sending messages: ', error)
+						sendTextMessage(sender, "Error, echo: " + text.substring(0, 200))
+
 					} else if (response.body.error) {
 						console.log('Error: ', response.body.error)
+						sendTextMessage(sender, "Error body, echo: " + text.substring(0, 200))
 					}
 					sendResponseData(sender,response)
 				})
@@ -124,8 +125,10 @@ function sendResponseData(sender,response) {
 	}, function(error, response, body) {
 		if (error) {
 			console.log('Error sending messages: ', error)
+			sendTextMessage(sender, "Error sending messages, echo: " + text.substring(0, 200))
+
 		} else if (response.body.error) {
-			console.log('Error: ', response.body.error)
+			console.log('Error sending body messages: ', response.body.error)
 		}
 	})
 }
