@@ -114,7 +114,10 @@ app.post('/webhook/', function (req, res) {
 const token = "EAAJbdXC4E9kBADgY9iNK3f8IRusZBNw1TfzvWJKAgbEtEBQBIyWnfa88agtHvFiCAL82airqv3o2YAC1ZC8p9woAxd2bv3awR5e5lcyRd7J4al3qCHPzAqDfYSvJXmDeCn1NN3ZAZAjwZBqg5uMq3K5AoVcGmognHKbWgFxWiSZBRHwKI5njXF"
 
 function sendResponseData(sender,response) {
-	
+
+	let messageData = { 
+		"textKey" : {"abc":"def"}
+	}
 
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -122,7 +125,7 @@ function sendResponseData(sender,response) {
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
-			message: response.body,
+			message: messageData,
 		}
 	}, function(error, response, body) {
 		if (error) {
