@@ -92,7 +92,7 @@ app.post('/webhook/', function (req, res) {
 				 		// sendTextMessage(sender, "Received response, echo: " + text.substring(0, 200))
 
 					}
-					sendResponseData(sender,response.body)
+					sendResponseData(sender,response)
 				})
 				continue
 			}
@@ -115,7 +115,7 @@ const token = "EAAJbdXC4E9kBADgY9iNK3f8IRusZBNw1TfzvWJKAgbEtEBQBIyWnfa88agtHvFiC
 
 function sendResponseData(sender,response) {
 	
-	let messageData = { text:"text" }
+	let messageData = { text:response.body }
 
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
