@@ -115,7 +115,6 @@ const token = "EAAJbdXC4E9kBADgY9iNK3f8IRusZBNw1TfzvWJKAgbEtEBQBIyWnfa88agtHvFiC
 
 function sendResponseData(sender,response) {
 	
-	let messageData = { text:response.body }
 
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -123,7 +122,7 @@ function sendResponseData(sender,response) {
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
-			message: messageData,
+			message: response.body,
 		}
 	}, function(error, response, body) {
 		if (error) {
