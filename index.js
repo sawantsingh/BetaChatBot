@@ -85,13 +85,14 @@ app.post('/webhook/', function (req, res) {
 				}, function(error, response, body) {
 					if (error) {
 						console.log('Error sending messages: ', error)
-						sendTextMessage(sender, "Error, echo: " + text.substring(0, 200))
-
 					} else if (response.body.error) {
 						console.log('Error: ', response.body.error)
-						sendTextMessage(sender, "Error body, echo: " + text.substring(0, 200))
 					}
-					sendResponseData(sender,response)
+					if (response) {
+				 		 sendTextMessage(sender, "Received response, echo: " + text.substring(0, 200))
+
+					}
+					//sendResponseData(sender,response)
 				})
 				continue
 			}
@@ -125,10 +126,8 @@ function sendResponseData(sender,response) {
 	}, function(error, response, body) {
 		if (error) {
 			console.log('Error sending messages: ', error)
-			sendTextMessage(sender, "Error sending messages, echo: " + text.substring(0, 200))
-
 		} else if (response.body.error) {
-			console.log('Error sending body messages: ', response.body.error)
+			console.log('Error: ', response.body.error)
 		}
 	})
 }
