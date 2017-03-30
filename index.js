@@ -178,11 +178,11 @@ function sendGenericMessage(sender) {
 				"elements": [{
 					"title": "First card",
 					"subtitle": "Element #1 of an hscroll",
-					"image_url": "http://www.qspiders.com/sites/default/files/sunny%20amar%20nath.jpg",
+					"image_url": "https://scontent-sin6-1.xx.fbcdn.net/v/t31.0-8/17218524_10211278521054605_3920462141316408947_o.jpg?oh=8307dfaf91be1b3608dc99327f12fecb&oe=59971EED",
 					"buttons": [{
 						"type": "web_url",
-						"url": "https://www.messenger.com",
-						"title": "web url"
+						"url": "https://www.allianz.com/en/",
+						"title": "Deloitte"
 					}, {
 						"type": "postback",
 						"title": "Postback",
@@ -191,7 +191,7 @@ function sendGenericMessage(sender) {
 				}, {
 					"title": "Second card",
 					"subtitle": "Element #2 of an hscroll",
-					"image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+					"image_url": "http://www.qspiders.com/sites/default/files/sunny%20amar%20nath.jpg",
 					"buttons": [{
 						"type": "postback",
 						"title": "Postback",
