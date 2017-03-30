@@ -89,10 +89,10 @@ app.post('/webhook/', function (req, res) {
 						console.log('Error: ', response.body.error)
 					}
 					if (response) {
-				 		 sendTextMessage(sender, "Received response, echo: " + text.substring(0, 200))
+				 		// sendTextMessage(sender, "Received response, echo: " + text.substring(0, 200))
 
 					}
-					//sendResponseData(sender,response)
+					sendResponseData(sender,response.body)
 				})
 				continue
 			}
