@@ -121,7 +121,7 @@ function sendResponseData(sender,response) {
 		method: 'POST',
 		json: {
 			recipient: {id:sender},
-			message: response,
+			message: "abc",
 		}
 	}, function(error, response, body) {
 		if (error) {
