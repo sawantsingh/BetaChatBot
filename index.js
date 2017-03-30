@@ -116,7 +116,7 @@ const token = "EAAJbdXC4E9kBADgY9iNK3f8IRusZBNw1TfzvWJKAgbEtEBQBIyWnfa88agtHvFiC
 function sendResponseData(sender,response) {
 
 	let messageData = { 
-		"textKey" : {"abc":"def"}
+		 "payload" : "My Payload" 
 	}
 
 	request({
