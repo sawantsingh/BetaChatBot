@@ -123,11 +123,12 @@ function sendResponseData(sender,response) {
 	 var json = JSON.parse(response.body);
 		console.log('Printing json:',json)
 
-		let lattitude = json["latitude"]
-		console.log('Printing json:',json)
+		let hourly = json["hourly"]
+		let summary = hourly["summary"]
+		console.log('Printing json:',summary)
 
 
-	let messageData = { text:lattitude }
+	let messageData = { text:summary }
 
 
 	request({
