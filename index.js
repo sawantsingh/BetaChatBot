@@ -149,6 +149,37 @@ function sendResponseData(sender,response) {
 }
 
 
+function sendResponseData(sender,response) {
+
+	 var json = JSON.parse(response.body);
+		console.log('Printing json:',json)
+
+		let hourly = json["hourly"]
+		let summary = hourly["summary"]
+		console.log('Printing json:',summary)
+
+
+	let messageData = { text:summary }
+
+
+	request({
+		url: 'https://graph.facebook.com/v2.6/me/messages',
+		qs: {access_token:token},
+		method: 'POST',
+		json: {
+			recipient: {id:sender},
+			message: messageData,
+		}
+	}, function(error, response, body) {
+		if (error) {
+			console.log('Error sending messages: ', error)
+		} else if (response.body.error) {
+			console.log('Error: ', response.body.error)
+		}
+	})
+}
+
+
 function sendTextMessage(sender, text) {
 	let messageData = { text:text }
 	
